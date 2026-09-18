@@ -47,3 +47,57 @@ baseline/validációs számok, mi maradt nyitva), aztán `goal.complete()`.
 - [ ] `<TÖLTSD KI: pl. .venv/bin/python>` — ha nincs venv, a rendszer-python abszolút útvonala
 - [ ] A spec-fájlok át lettek másolva a repóba (specs/001-verbatim-context-compaction/) és commitolva
 - [ ] `Agent.md` létrehozva a repó gyökerében (zárási naplóbejegyzés célpontja)
+
+---
+
+## Indítás a szerveren (másolható parancssorozat)
+
+> Feltétel: a két `<TÖLTSD KI>` mező kitöltve, a szerveren `prime-agent`, `tmux`,
+> `node ≥ 20` és `git` elérhető.
+
+```bash
+# 0) Repó klónozása a szerveren (ha még nincs)
+git clone https://github.com/szocpaul/jev-compaction-prime.git
+cd jev-compaction-prime
+
+# 1) Környezeti előfeltételek (ezeket TE futtatod, nem a runner)
+node --version                      # ≥ 20 kell
+export TYPESAFE_API_KEY=<a kulcsod> # a tmux-session ÖRÖKLI → előbb exportáld!
+
+# 2) Dedikált tmux-session a runnernek
+tmux new-session -d -s spec001-runner -c "$(pwd)"
+
+# 3) Runner indítása autonomous módban, a handoff-prompttal
+#    (a prompt a FÁJLRA hivatkozik, nem másoljuk bele a tasklistát)
+tmux send-keys -t spec001-runner 'prime-agent --autonomous \
+  --goal "Implementáld a specs/001-verbatim-context-compaction/ specet a runner-handoff.md szabályai szerint" \
+  --max-turns 8 --max-hours 2' Enter
+
+# 4) Elküldöd neki a handoffot első üzenetként
+tmux send-keys -t spec001-runner \
+  'Olvasd el a specs/001-verbatim-context-compaction/runner-handoff.md fájlt, és a benne lévő preflight-tal kezdd. Meghiusult preflight → állj meg és jelentsd.' Enter
+
+# 5) (Opcionális) elnevezed, hogy címezhető legyen
+prime-agent rename spec001-runner 2>/dev/null || true
+```
+
+**Közben (neked):**
+
+```bash
+prime-agent list                          # runner státusza (working/idle)
+prime-agent attach spec001-runner         # belenézés élőben, bármikor
+grep -c '^\- \[x\]' specs/001-verbatim-context-compaction/tasks.md   # haladás
+prime-agent send spec001-runner "korrekció..."   # út közbeni irányítás
+```
+
+**Várható megállások (ezek NEM hibák):**
+
+1. **T003 MANUÁLIS KAPU**: a runner elkészíti a `baseline_loss.json`-t, megáll, és üzen neked — te nézed át és hagyod jóvá (vagy állítod le a láncot, ha a veszteség ≈ 0).
+2. **T013 MANUÁLIS KAPU**: a validáció (`validation.json` + teljes pytest) után újra megáll — te review-zod a kódot és a méréseket, a tradeoff-döntés a tiéd.
+
+**Takarítás a végén (a runner csinálja, ellenőrizd):**
+
+```bash
+tmux kill-session -t spec001-runner   # ha a runner nem tette meg
+git log --oneline -3                  # a záró commit + Agent.md bejegyzés megvan?
+```
