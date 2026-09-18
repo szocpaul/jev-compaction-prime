@@ -50,36 +50,20 @@ baseline/validációs számok, mi maradt nyitva), aztán `goal.complete()`.
 
 ---
 
-## Indítás a szerveren (másolható parancssorozat)
+## Indítás a szerveren (autonomous-spec-runner skill)
 
-> Feltétel: a két `<TÖLTSD KI>` mező kitöltve, a szerveren `prime-agent`, `tmux`,
-> `node ≥ 20` és `git` elérhető.
+> Nincs szükség kézi tmux/parancs-sorozatra — a Prime Agentben erre a munkafolyamatra
+> skill van. A feladat LEÍRÁSA aktiválja (playbook 14.1): az agent a skill útmutatója
+> szerint maga végzi a preflightet, a launchot, a monitoringot és a takarítást.
+>
+> Feltétel: a két `<TÖLTSD KI>` mező kitöltve; a szerveren `node ≥ 20`, `git` elérhető,
+> és a `TYPESAFE_API_KEY` a környezetben beállítva (a runner-session örökli).
 
-```bash
-# 0) Repó klónozása a szerveren (ha még nincs)
-git clone https://github.com/szocpaul/jev-compaction-prime.git
-cd jev-compaction-prime
+A main-sessionben ennyit kell írni:
 
-# 1) Környezeti előfeltételek (ezeket TE futtatod, nem a runner)
-node --version                      # ≥ 20 kell
-export TYPESAFE_API_KEY=<a kulcsod> # a tmux-session ÖRÖKLI → előbb exportáld!
-
-# 2) Dedikált tmux-session a runnernek
-tmux new-session -d -s spec001-runner -c "$(pwd)"
-
-# 3) Runner indítása autonomous módban, a handoff-prompttal
-#    (a prompt a FÁJLRA hivatkozik, nem másoljuk bele a tasklistát)
-tmux send-keys -t spec001-runner 'prime-agent --autonomous \
-  --goal "Implementáld a specs/001-verbatim-context-compaction/ specet a runner-handoff.md szabályai szerint" \
-  --max-turns 8 --max-hours 2' Enter
-
-# 4) Elküldöd neki a handoffot első üzenetként
-tmux send-keys -t spec001-runner \
-  'Olvasd el a specs/001-verbatim-context-compaction/runner-handoff.md fájlt, és a benne lévő preflight-tal kezdd. Meghiusult preflight → állj meg és jelentsd.' Enter
-
-# 5) (Opcionális) elnevezed, hogy címezhető legyen
-prime-agent rename spec001-runner 2>/dev/null || true
-```
+> „Implementáld a specs/001-verbatim-context-compaction specet az autonomous-spec-runner
+> workflow-val. A szabályok a specs/001-verbatim-context-compaction/runner-handoff.md-ben
+> vannak — a preflighttel kezdd, meghiusult preflight esetén ne induljon semmi."
 
 **Közben (neked):**
 
@@ -98,6 +82,5 @@ prime-agent send spec001-runner "korrekció..."   # út közbeni irányítás
 **Takarítás a végén (a runner csinálja, ellenőrizd):**
 
 ```bash
-tmux kill-session -t spec001-runner   # ha a runner nem tette meg
 git log --oneline -3                  # a záró commit + Agent.md bejegyzés megvan?
 ```
