@@ -11,7 +11,7 @@
 ## Phase 0: Baseline-mérés (SC-004 előfeltétel — MINDEN változtatás előtt)
 
 - [x] T001 Rögzíts ≥5 valós Prime Agent session-átiratot (JSONL) a `tests/fixtures/transcripts/` alá, változatlan környezetben; minden áirat 80–150 tool call-os legyen.
-- [ ] T002 Írj `scripts/baseline_loss.py` scriptet: minden fixture-átiraton lefuttatja a meglévő összefoglaló-compactiont, és számszerűen rögzíti, hány később hivatkozott fájlútvonal/hibaüzenet esett ki — per-átirat bontásban, `baseline_loss.json`-be.
+- [x] T002 Írj `scripts/baseline_loss.py` scriptet: minden fixture-átiraton lefuttatja a meglévő összefoglaló-compactiont, és számszerűen rögzíti, hány később hivatkozott fájlútvonal/hibaüzenet esett ki — per-átirat bontásban, `baseline_loss.json`-be.
   - Kis mintás zajmérés: a mérést 2–3× ismételd ugyanazon áiratokon; az intervallumokat is rögzítsd.
 - [ ] T003 **MANUÁLIS KAPU**: a felhasználó átnézi a `baseline_loss.json`-t, és jóváhagyja, hogy a diagnózis igazolódott (vagy a lánc megáll, ha a veszteség ≈ 0). Az agent NEM pipálhatja.
 

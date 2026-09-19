@@ -1,0 +1,1006 @@
+{
+  "meta": {
+    "purpose": "SC-004 baseline: loss of later-referenced file paths / error messages under the EXISTING summarization-based compaction",
+    "summarizer": {
+      "base_url": "http://desktop-c5ikame-1.tailee6bc1.ts.net:8033/v1",
+      "model": "models\\Qwen3.8-27B-UD-Q4_K_M.gguf",
+      "note": "prime-agent compaction uses the session model; the configured local-tailscale provider endpoint serves the measurement"
+    },
+    "prompts": "verbatim replica of SUMMARIZATION_SYSTEM_PROMPT / SUMMARIZATION_PROMPT / KERNEL_PERSIST_SUMMARY_NOTE + serializeConversation from prime-agent dist",
+    "settings": {
+      "keepRecentTokens": 20000,
+      "reserveTokens": 16384,
+      "summaryMaxTokens": 13107
+    },
+    "runs_per_transcript": 3,
+    "cache": "none — every run calls the summarizer live",
+    "deviation": "T001 asked for 80-150 tool-call transcripts; only 1 of 48 real sessions qualifies, so the 6 largest real sessions were used (34-98 tool calls)."
+  },
+  "transcripts": {
+    "session-01.jsonl": {
+      "messages": 198,
+      "cut_index": 106,
+      "prefix_messages": 106,
+      "suffix_messages": 92,
+      "candidates_later_referenced": 41,
+      "lost_per_run": [
+        30,
+        32,
+        32
+      ],
+      "lost_min": 30,
+      "lost_max": 32,
+      "lost_mean": 31.333333333333332,
+      "runs": [
+        {
+          "run": 0,
+          "summary_chars": 8487,
+          "candidates": 41,
+          "kept": 11,
+          "lost": 30,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "# dspy.Example létrehozása: story_text + template_context (inputok),"
+            },
+            {
+              "kind": "error",
+              "value": "# html (expected output). Spec 009: a template_context kötelező input —"
+            },
+            {
+              "kind": "error",
+              "value": "(trainset, valset) tuple — 3 trainset és 2 valset dspy.Example objektum."
+            },
+            {
+              "kind": "error",
+              "value": "Edited /home/ubuntu/dspy_projects/snow_kb_generator/eval/metric.py"
+            },
+            {
+              "kind": "error",
+              "value": "Minden example tartalmazza a story_text (input) és html (expected output) mezőket."
+            },
+            {
+              "kind": "error",
+              "value": "ex = dspy.Example("
+            },
+            {
+              "kind": "error",
+              "value": "examples.append(ex)"
+            },
+            {
+              "kind": "error",
+              "value": "trainset, valset = load_gold_dataset(\"data/examples/gold_dataset.md\")"
+            },
+            {
+              "kind": "path",
+              "value": "/docs.pytest.org/en/stable/how-to/capture-warnings.html"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/Agent.md"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/data/examples/gold_dataset.md"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/eval/dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/eval/metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/runs"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "docs.pytest.org/en/stable/how-to/capture-warnings.html"
+            },
+            {
+              "kind": "path",
+              "value": "docs/.scaffold-docs.yml"
+            },
+            {
+              "kind": "path",
+              "value": "docs/deferred-topics.md"
+            },
+            {
+              "kind": "path",
+              "value": "docs/getting-started.md"
+            },
+            {
+              "kind": "path",
+              "value": "docs/overall-structure.md"
+            },
+            {
+              "kind": "path",
+              "value": "eval/compare.py"
+            },
+            {
+              "kind": "path",
+              "value": "eval/gepa_optimize.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/Agent.md"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/data/examples/gold_dataset.md"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/eval/dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/eval/metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "runs/optimized.json"
+            }
+          ]
+        },
+        {
+          "run": 1,
+          "summary_chars": 5862,
+          "candidates": 41,
+          "kept": 9,
+          "lost": 32,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "# dspy.Example létrehozása: story_text + template_context (inputok),"
+            },
+            {
+              "kind": "error",
+              "value": "# html (expected output). Spec 009: a template_context kötelező input —"
+            },
+            {
+              "kind": "error",
+              "value": "(trainset, valset) tuple — 3 trainset és 2 valset dspy.Example objektum."
+            },
+            {
+              "kind": "error",
+              "value": "Edited /home/ubuntu/dspy_projects/snow_kb_generator/eval/metric.py"
+            },
+            {
+              "kind": "error",
+              "value": "Minden example tartalmazza a story_text (input) és html (expected output) mezőket."
+            },
+            {
+              "kind": "error",
+              "value": "ex = dspy.Example("
+            },
+            {
+              "kind": "error",
+              "value": "examples.append(ex)"
+            },
+            {
+              "kind": "error",
+              "value": "trainset, valset = load_gold_dataset(\"data/examples/gold_dataset.md\")"
+            },
+            {
+              "kind": "path",
+              "value": "/docs.pytest.org/en/stable/how-to/capture-warnings.html"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/Agent.md"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/data/examples/gold_dataset.md"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/eval/dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/eval/metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/runs"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "docs.pytest.org/en/stable/how-to/capture-warnings.html"
+            },
+            {
+              "kind": "path",
+              "value": "docs/.scaffold-docs.yml"
+            },
+            {
+              "kind": "path",
+              "value": "docs/deferred-topics.md"
+            },
+            {
+              "kind": "path",
+              "value": "docs/getting-started.md"
+            },
+            {
+              "kind": "path",
+              "value": "docs/overall-structure.md"
+            },
+            {
+              "kind": "path",
+              "value": "eval/compare.py"
+            },
+            {
+              "kind": "path",
+              "value": "eval/gepa_optimize.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/Agent.md"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/data/examples/gold_dataset.md"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/eval/dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/eval/metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "runs/optimized.json"
+            },
+            {
+              "kind": "path",
+              "value": "tests/test_eval_dataset.py"
+            }
+          ]
+        },
+        {
+          "run": 2,
+          "summary_chars": 3545,
+          "candidates": 41,
+          "kept": 9,
+          "lost": 32,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "# dspy.Example létrehozása: story_text + template_context (inputok),"
+            },
+            {
+              "kind": "error",
+              "value": "# html (expected output). Spec 009: a template_context kötelező input —"
+            },
+            {
+              "kind": "error",
+              "value": "(trainset, valset) tuple — 3 trainset és 2 valset dspy.Example objektum."
+            },
+            {
+              "kind": "error",
+              "value": "Edited /home/ubuntu/dspy_projects/snow_kb_generator/eval/metric.py"
+            },
+            {
+              "kind": "error",
+              "value": "Minden example tartalmazza a story_text (input) és html (expected output) mezőket."
+            },
+            {
+              "kind": "error",
+              "value": "ex = dspy.Example("
+            },
+            {
+              "kind": "error",
+              "value": "examples.append(ex)"
+            },
+            {
+              "kind": "error",
+              "value": "trainset, valset = load_gold_dataset(\"data/examples/gold_dataset.md\")"
+            },
+            {
+              "kind": "path",
+              "value": "/docs.pytest.org/en/stable/how-to/capture-warnings.html"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/Agent.md"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/data/examples/gold_dataset.md"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/eval/dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/eval/metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/runs"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "docs.pytest.org/en/stable/how-to/capture-warnings.html"
+            },
+            {
+              "kind": "path",
+              "value": "docs/.scaffold-docs.yml"
+            },
+            {
+              "kind": "path",
+              "value": "docs/deferred-topics.md"
+            },
+            {
+              "kind": "path",
+              "value": "docs/getting-started.md"
+            },
+            {
+              "kind": "path",
+              "value": "docs/overall-structure.md"
+            },
+            {
+              "kind": "path",
+              "value": "eval/compare.py"
+            },
+            {
+              "kind": "path",
+              "value": "eval/gepa_optimize.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/Agent.md"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/data/examples/gold_dataset.md"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/eval/dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/eval/metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_dataset.py"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/dspy_projects/snow_kb_generator/tests/test_eval_metric.py"
+            },
+            {
+              "kind": "path",
+              "value": "runs/baseline.json"
+            },
+            {
+              "kind": "path",
+              "value": "runs/optimized.json"
+            }
+          ]
+        }
+      ]
+    },
+    "session-02.jsonl": {
+      "messages": 104,
+      "cut_index": 37,
+      "prefix_messages": 37,
+      "suffix_messages": 67,
+      "candidates_later_referenced": 17,
+      "lost_per_run": [
+        6,
+        12,
+        10
+      ],
+      "lost_min": 6,
+      "lost_max": 12,
+      "lost_mean": 9.333333333333334,
+      "runs": [
+        {
+          "run": 0,
+          "summary_chars": 5669,
+          "candidates": 17,
+          "kept": 11,
+          "lost": 6,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "npm error npm error --allow-scripts is not allowed in project-scoped installs. Add the entries to the \"allowScripts\" field in package.json, or to .npmrc, instead."
+            },
+            {
+              "kind": "error",
+              "value": "npm error npm error code EALLOWSCRIPTS"
+            },
+            {
+              "kind": "path",
+              "value": "/.prime/agent/sessions"
+            },
+            {
+              "kind": "path",
+              "value": "/001-verbatim-context-compaction/tasks.md"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm/_logs"
+            },
+            {
+              "kind": "path",
+              "value": "specs/001-verbatim-context-compaction/tasks.md"
+            }
+          ]
+        },
+        {
+          "run": 1,
+          "summary_chars": 4502,
+          "candidates": 17,
+          "kept": 5,
+          "lost": 12,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "npm error npm error --allow-scripts is not allowed in project-scoped installs. Add the entries to the \"allowScripts\" field in package.json, or to .npmrc, instead."
+            },
+            {
+              "kind": "error",
+              "value": "npm error npm error code EALLOWSCRIPTS"
+            },
+            {
+              "kind": "path",
+              "value": "/.prime/agent/sessions"
+            },
+            {
+              "kind": "path",
+              "value": "/001-verbatim-context-compaction/tasks.md"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/npm/lib"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm/_logs"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/jev-compaction-prime/compaction/bridge/.npmrc"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/jev-compaction-prime/compaction/bridge/package.json"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/jev-compaction-prime/compaction/bridge/package.json"
+            },
+            {
+              "kind": "path",
+              "value": "specs/001-verbatim-context-compaction/tasks.md"
+            }
+          ]
+        },
+        {
+          "run": 2,
+          "summary_chars": 5035,
+          "candidates": 17,
+          "kept": 7,
+          "lost": 10,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "npm error npm error --allow-scripts is not allowed in project-scoped installs. Add the entries to the \"allowScripts\" field in package.json, or to .npmrc, instead."
+            },
+            {
+              "kind": "error",
+              "value": "npm error npm error code EALLOWSCRIPTS"
+            },
+            {
+              "kind": "path",
+              "value": "/.prime/agent/sessions"
+            },
+            {
+              "kind": "path",
+              "value": "/001-verbatim-context-compaction/tasks.md"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm/_logs"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/jev-compaction-prime/compaction/bridge/.npmrc"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/jev-compaction-prime/compaction/bridge/package.json"
+            },
+            {
+              "kind": "path",
+              "value": "bridge/package.json"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/jev-compaction-prime/compaction/bridge/package.json"
+            },
+            {
+              "kind": "path",
+              "value": "specs/001-verbatim-context-compaction/tasks.md"
+            }
+          ]
+        }
+      ]
+    },
+    "session-03.jsonl": {
+      "messages": 96,
+      "cut_index": 14,
+      "prefix_messages": 14,
+      "suffix_messages": 82,
+      "candidates_later_referenced": 16,
+      "lost_per_run": [
+        9,
+        11,
+        9
+      ],
+      "lost_min": 9,
+      "lost_max": 11,
+      "lost_mean": 9.666666666666666,
+      "runs": [
+        {
+          "run": 0,
+          "summary_chars": 3374,
+          "candidates": 16,
+          "kept": 7,
+          "lost": 9,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "except Exception as exc:  # noqa: BLE001 — szándékosan széles háló (FR-002)"
+            },
+            {
+              "kind": "path",
+              "value": "/0.25/0.15/0.15/0.20"
+            },
+            {
+              "kind": "path",
+              "value": "/012-style-judge-noise-reduction/plan.md"
+            },
+            {
+              "kind": "path",
+              "value": "/012-style-judge-noise-reduction/spec.md"
+            },
+            {
+              "kind": "path",
+              "value": "/examples/kb0010015_style_reference.html"
+            },
+            {
+              "kind": "path",
+              "value": "data/examples/kb0010015_style_reference.html"
+            },
+            {
+              "kind": "path",
+              "value": "spec.md/plan.md"
+            },
+            {
+              "kind": "path",
+              "value": "specs/012-style-judge-noise-reduction/plan.md"
+            },
+            {
+              "kind": "path",
+              "value": "specs/012-style-judge-noise-reduction/spec.md"
+            }
+          ]
+        },
+        {
+          "run": 1,
+          "summary_chars": 5307,
+          "candidates": 16,
+          "kept": 5,
+          "lost": 11,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "except Exception as exc:  # noqa: BLE001 — szándékosan széles háló (FR-002)"
+            },
+            {
+              "kind": "path",
+              "value": "/0.25/0.15/0.15/0.20"
+            },
+            {
+              "kind": "path",
+              "value": "/012-style-judge-noise-reduction/plan.md"
+            },
+            {
+              "kind": "path",
+              "value": "/012-style-judge-noise-reduction/spec.md"
+            },
+            {
+              "kind": "path",
+              "value": "/012-style-judge-noise-reduction/tasks.md"
+            },
+            {
+              "kind": "path",
+              "value": "/examples/kb0010015_style_reference.html"
+            },
+            {
+              "kind": "path",
+              "value": "data/examples/kb0010015_style_reference.html"
+            },
+            {
+              "kind": "path",
+              "value": "spec.md/plan.md"
+            },
+            {
+              "kind": "path",
+              "value": "specs/012-style-judge-noise-reduction/plan.md"
+            },
+            {
+              "kind": "path",
+              "value": "specs/012-style-judge-noise-reduction/spec.md"
+            },
+            {
+              "kind": "path",
+              "value": "specs/012-style-judge-noise-reduction/tasks.md"
+            }
+          ]
+        },
+        {
+          "run": 2,
+          "summary_chars": 4755,
+          "candidates": 16,
+          "kept": 7,
+          "lost": 9,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "except Exception as exc:  # noqa: BLE001 — szándékosan széles háló (FR-002)"
+            },
+            {
+              "kind": "path",
+              "value": "/0.25/0.15/0.15/0.20"
+            },
+            {
+              "kind": "path",
+              "value": "/012-style-judge-noise-reduction/plan.md"
+            },
+            {
+              "kind": "path",
+              "value": "/012-style-judge-noise-reduction/tasks.md"
+            },
+            {
+              "kind": "path",
+              "value": "/examples/kb0010015_style_reference.html"
+            },
+            {
+              "kind": "path",
+              "value": "data/examples/kb0010015_style_reference.html"
+            },
+            {
+              "kind": "path",
+              "value": "spec.md/plan.md"
+            },
+            {
+              "kind": "path",
+              "value": "specs/012-style-judge-noise-reduction/plan.md"
+            },
+            {
+              "kind": "path",
+              "value": "specs/012-style-judge-noise-reduction/tasks.md"
+            }
+          ]
+        }
+      ]
+    },
+    "session-04.jsonl": {
+      "messages": 87,
+      "cut_index": 36,
+      "prefix_messages": 36,
+      "suffix_messages": 51,
+      "candidates_later_referenced": 10,
+      "lost_per_run": [
+        9,
+        9,
+        9
+      ],
+      "lost_min": 9,
+      "lost_max": 9,
+      "lost_mean": 9.0,
+      "runs": [
+        {
+          "run": 0,
+          "summary_chars": 2077,
+          "candidates": 10,
+          "kept": 1,
+          "lost": 9,
+          "lost_items": [
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/config.js"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/model-registry.js"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/sdk.js"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/node_modules/@earendil-works/pi-ai/dist/models.generated.js"
+            },
+            {
+              "kind": "path",
+              "value": "earendil-works/pi-ai/dist/models.generated.js"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/config.js"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/model-registry.js"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/sdk.js"
+            }
+          ]
+        },
+        {
+          "run": 1,
+          "summary_chars": 1786,
+          "candidates": 10,
+          "kept": 1,
+          "lost": 9,
+          "lost_items": [
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/config.js"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/model-registry.js"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/sdk.js"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/node_modules/@earendil-works/pi-ai/dist/models.generated.js"
+            },
+            {
+              "kind": "path",
+              "value": "earendil-works/pi-ai/dist/models.generated.js"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/config.js"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/model-registry.js"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/sdk.js"
+            }
+          ]
+        },
+        {
+          "run": 2,
+          "summary_chars": 2409,
+          "candidates": 10,
+          "kept": 1,
+          "lost": 9,
+          "lost_items": [
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/config.js"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/model-registry.js"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/sdk.js"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/node_modules/@earendil-works/pi-ai/dist"
+            },
+            {
+              "kind": "path",
+              "value": "/home/ubuntu/.npm-global/lib/node_modules/prime-agent/node_modules/@earendil-works/pi-ai/dist/models.generated.js"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/config.js"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/model-registry.js"
+            },
+            {
+              "kind": "path",
+              "value": "home/ubuntu/.npm-global/lib/node_modules/prime-agent/dist/core/sdk.js"
+            }
+          ]
+        }
+      ]
+    },
+    "session-05.jsonl": {
+      "messages": 81,
+      "cut_index": 61,
+      "prefix_messages": 61,
+      "suffix_messages": 20,
+      "candidates_later_referenced": 1,
+      "lost_per_run": [
+        0,
+        0,
+        0
+      ],
+      "lost_min": 0,
+      "lost_max": 0,
+      "lost_mean": 0.0,
+      "runs": [
+        {
+          "run": 0,
+          "summary_chars": 4075,
+          "candidates": 1,
+          "kept": 1,
+          "lost": 0,
+          "lost_items": []
+        },
+        {
+          "run": 1,
+          "summary_chars": 3852,
+          "candidates": 1,
+          "kept": 1,
+          "lost": 0,
+          "lost_items": []
+        },
+        {
+          "run": 2,
+          "summary_chars": 3887,
+          "candidates": 1,
+          "kept": 1,
+          "lost": 0,
+          "lost_items": []
+        }
+      ]
+    },
+    "session-06.jsonl": {
+      "messages": 71,
+      "cut_index": 38,
+      "prefix_messages": 38,
+      "suffix_messages": 33,
+      "candidates_later_referenced": 3,
+      "lost_per_run": [
+        1,
+        1,
+        1
+      ],
+      "lost_min": 1,
+      "lost_max": 1,
+      "lost_mean": 1.0,
+      "runs": [
+        {
+          "run": 0,
+          "summary_chars": 4009,
+          "candidates": 3,
+          "kept": 2,
+          "lost": 1,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "catch (error) {"
+            }
+          ]
+        },
+        {
+          "run": 1,
+          "summary_chars": 3337,
+          "candidates": 3,
+          "kept": 2,
+          "lost": 1,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "catch (error) {"
+            }
+          ]
+        },
+        {
+          "run": 2,
+          "summary_chars": 3418,
+          "candidates": 3,
+          "kept": 2,
+          "lost": 1,
+          "lost_items": [
+            {
+              "kind": "error",
+              "value": "catch (error) {"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
