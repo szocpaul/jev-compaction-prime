@@ -26,7 +26,12 @@ a tasks.md sorrendjében, checkbox-pipálással ahogy haladsz.
 - `pytest -q tests/test_fallback.py` (SC-003)
 - `pytest -q` teljes csomag a validációs fázisban (T012)
 
-**Limitek:** max 8 turn, max 2 óra wall-clock; egy task többszöri bukása után állj meg és jelentsd.
+**Limitek (autonomous-spec-runner minta szerint):** max 40 turn, max 8 continuation,
+max 200 000 token, max 3 óra wall-clock; egy task többszöri bukása után állj meg és jelentsd.
+
+**Autonomous-gate: szándékosan NINCS.** A tesztek a teszt-előbb workflow miatt a Phase 1–2
+során jönnek létre és eleinte buknak — egy launch-time `pytest -q` gate a legális munka
+alatt végig piros lenne. A gate-ek task-szinten élnek a tasks.md-ben (SC-001..003, T012).
 
 **TILALMAK:**
 - A MANUÁLIS KAPU taskokat (T003, T013) NE pipáld — azok emberi döntések; állj meg és jelentsd, amikor odaérsz.
@@ -41,12 +46,11 @@ baseline/validációs számok, mi maradt nyitva), aztán `goal.complete()`.
 
 ---
 
-## Kitöltendő a felhasználó által
+## Kitöltve a felhasználó által ✅
 
-- [ ] `<TÖLTSD KI: a clone útvonala a szerveren>` — pl. `/home/<user>/jev-compaction-prime`
-- [ ] `<TÖLTSD KI: pl. .venv/bin/python>` — ha nincs venv, a rendszer-python abszolút útvonala
-- [ ] A spec-fájlok át lettek másolva a repóba (specs/001-verbatim-context-compaction/) és commitolva
-- [ ] `Agent.md` létrehozva a repó gyökerében (zárási naplóbejegyzés célpontja)
+- [x] Clone-útvonal és interpreter kitöltve (lásd a Környezet szekciót)
+- [x] A spec-fájlok a repóban (specs/001-verbatim-context-compaction/) és commitolva
+- [x] `Agent.md` létrehozva a repó gyökerében (zárási naplóbejegyzés célpontja)
 
 ---
 
@@ -56,14 +60,19 @@ baseline/validációs számok, mi maradt nyitva), aztán `goal.complete()`.
 > skill van. A feladat LEÍRÁSA aktiválja (playbook 14.1): az agent a skill útmutatója
 > szerint maga végzi a preflightet, a launchot, a monitoringot és a takarítást.
 >
-> Feltétel: a két `<TÖLTSD KI>` mező kitöltve; a szerveren `node ≥ 20`, `git` elérhető,
+> Feltétel: a Környezet szekció kitöltve; a szerveren `node ≥ 20`, `git` elérhető,
 > és a `TYPESAFE_API_KEY` a környezetben beállítva (a runner-session örökli).
 
-A main-sessionben ennyit kell írni:
+A main-sessionben ennyit kell írni (a 3 kritikus klauzula a PROMPTBAN is szerepeljen —
+kontextus-vesztés esetén is maradjon fék):
 
 > „Implementáld a specs/001-verbatim-context-compaction specet az autonomous-spec-runner
 > workflow-val. A szabályok a specs/001-verbatim-context-compaction/runner-handoff.md-ben
-> vannak — a preflighttel kezdd, meghiusult preflight esetén ne induljon semmi."
+> vannak — a preflighttel kezdd, meghiusult preflight esetén ne induljon semmi.
+> Interpreter: `/home/ubuntu/jev-compaction-prime/.venv/bin/python` — csak ezt használd.
+> Három fő szabály: A MANUÁLIS KAPU checkboxokat (T003, T013) NE PIPÁLD — állj meg és
+> jelentsd. A meglévő összefoglaló-compaction kódjához NE NYÚLJ. Ha a Jev API vagy az
+> npm-csomag elérhetetlen: ÁLLJ MEG ÉS JELENTSD, ne improvizálj."
 
 **Közben (neked):**
 
