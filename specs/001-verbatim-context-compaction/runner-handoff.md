@@ -10,8 +10,8 @@ Implementáld a `specs/001-verbatim-context-compaction/` specet (spec.md, plan.m
 a tasks.md sorrendjében, checkbox-pipálással ahogy haladsz.
 
 **Környezet:**
-- Repo lokális útvonala: `<TÖLTSD KI: a clone útvonala a szerveren>`
-- Python interpreter: `<TÖLTSD KI: pl. .venv/bin/python>` — csak ezt használd.
+- Repo lokális útvonala: `/home/ubuntu/jev-compaction-prime/`
+- Python interpreter: `/home/ubuntu/jev-compaction-prime/.venv/bin/python` — csak ezt használd.
 - A bridge Node 20+-ot igényel; `node --version` ellenőrzés a preflight része.
 
 **Preflight (MEGHISULT PREFLIGHT → NEM INDUL SEMMI):**
