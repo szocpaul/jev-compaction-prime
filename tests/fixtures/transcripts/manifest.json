@@ -1,0 +1,41 @@
+{
+  "note": "Valos Prime Agent session-atirokok, valtozatlanul masolva a ~/.prime/agent/sessions/ tarolobol. ELTÉRÉS a T001-tol: csak 1 session eri el a 80-150 tool call savot (a tobbi a kovetkezo legnagyobb valos session); a teljes elerheto pool 48 session, ebbol 1 db 80-150, 1 db 496, a tobbi <80.",
+  "fixtures": [
+    {
+      "fixture": "session-01.jsonl",
+      "source_session_id": "019ff03a-0977-7539-8f4c-17b8c2cee50f",
+      "tool_calls": 98,
+      "bytes": 800112
+    },
+    {
+      "fixture": "session-02.jsonl",
+      "source_session_id": "01a0b8b1-c80b-7109-a9f1-eec53e6455c1",
+      "tool_calls": 53,
+      "bytes": 475246
+    },
+    {
+      "fixture": "session-03.jsonl",
+      "source_session_id": "019ff0d7-3f49-7753-917b-080a77322f8d",
+      "tool_calls": 47,
+      "bytes": 421924
+    },
+    {
+      "fixture": "session-04.jsonl",
+      "source_session_id": "019fda53-1217-7548-bb2d-d376ad37a253",
+      "tool_calls": 41,
+      "bytes": 339132
+    },
+    {
+      "fixture": "session-05.jsonl",
+      "source_session_id": "01a0b0be-909a-73d6-9a84-ab2323bccf7a",
+      "tool_calls": 35,
+      "bytes": 142077
+    },
+    {
+      "fixture": "session-06.jsonl",
+      "source_session_id": "01a0b0dd-cc6e-7589-83f7-2ec87f6f51dc",
+      "tool_calls": 34,
+      "bytes": 292246
+    }
+  ]
+}
