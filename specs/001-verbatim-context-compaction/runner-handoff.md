@@ -16,7 +16,7 @@ a tasks.md sorrendjében, checkbox-pipálással ahogy haladsz.
 
 **Preflight (MEGHISULT PREFLIGHT → NEM INDUL SEMMI):**
 1. `node --version` ≥ 20
-2. `npm install` a `compaction/bridge/` alatt sikeres (fast-jev-compaction PINNELT verzió)
+2. `npm install github:tamaratran/fast-jev-compaction#e3f262a7f4d42bd8dd32ced30d26176f7cb545b0` a `compaction/bridge/` alatt sikeres (commit-hashre PINNELT Git-forrás — a csomag NINCS az npm-registry-ben), és `node -e "import('fast-jev-compaction').then(m => console.log(Object.keys(m)))"` listázza a `compactMessages` exportot
 3. `TYPESAFE_API_KEY` beállítva; egy minimális Jev-hívás sikeres (smoke-teszt)
 4. A Prime Agent JSONL-átiratok elérhetők a baseline-fixture-ökhöz (T001)
 
@@ -36,7 +36,7 @@ alatt végig piros lenne. A gate-ek task-szinten élnek a tasks.md-ben (SC-001..
 **TILALMAK:**
 - A MANUÁLIS KAPU taskokat (T003, T013) NE pipáld — azok emberi döntések; állj meg és jelentsd, amikor odaérsz.
 - A Prime Agent meglévő összefoglaló-compaction kódjához NE nyúlj (fallback-ként változatlanul marad).
-- A `fast-jev-compaction` verzióját a baseline rögzítése (T002) után NE változtasd — verzióváltás = baseline újramérés.
+- A `fast-jev-compaction` pinnelt commit-hashét (`e3f262a7`) a baseline rögzítése (T002) után NE változtasd — hash-váltás = baseline újramérés.
 - A baseline-mérésnél (T002) NE használj cache-t — a mérés tényleg fusson.
 - Részleges Jev-választ NE alkalmazz — részleges válasz = teljes fallback (plan KD-5).
 - Ha a Jev API vagy az npm-csomag elérhetetlen: állj meg és jelentsd — NE improvizálj helyettesítőt.

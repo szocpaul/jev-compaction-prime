@@ -6,13 +6,13 @@
 
 ## Summary
 
-A Prime Agent összefoglaló-alapú compactionja mellé/ helyére egy döntés-alapú, verbatim tömörítés: a `fast-jev-compaction` npm-csomag (módszer: tool call/result pontozás, eldobás vagy csonkítás, szövegek érintetlenek) egy vékony Node stdin/stdout JSON-bridge-en keresztül kapcsolódik a Python-oldali adapterhez, amely a Prime Agent JSONL-átiratait fordítja a csomag `Message[]` formátumára és vissza. Hiba vagy küszöb alatti tömörítési arány esetén a meglévő összefoglaló-compaction lép életbe (fallback), warning-loggal.
+A Prime Agent összefoglaló-alapú compactionja mellé/ helyére egy döntés-alapú, verbatim tömörítés: a `fast-jev-compaction` csomag (módszer: tool call/result pontozás, eldobás vagy csonkítás, szövegek érintetlenek) egy vékony Node stdin/stdout JSON-bridge-en keresztül kapcsolódik a Python-oldali adapterhez, amely a Prime Agent JSONL-átiratait fordítja a csomag `Message[]` formátumára és vissza. Hiba vagy küszöb alatti tömörítési arány esetén a meglévő összefoglaló-compaction lép életbe (fallback), warning-loggal.
 
 ## Technical Context
 
 **Language/Version**: Python 3.11+ (adapter, Prime Agent oldal); Node.js 20+ / TypeScript (bridge)
 
-**Primary Dependencies**: `fast-jev-compaction` npm-csomag (**pinnelt verzió** — lebegő alias tilos, verzióváltás = SC-004 baseline újramérés); TypeSafe/Jev API (`TYPESAFE_API_KEY`)
+**Primary Dependencies**: `fast-jev-compaction` — **GitHub-forrásból, commit-hash-pinninggel** (`github:tamaratran/fast-jev-compaction#e3f262a7f4d42bd8dd32ced30d26176f7cb545b0`; a csomag nincs a nyilvános npm-registry-ben — lebegő ref tilos, hash-váltás = SC-004 baseline újramérés); TypeSafe/Jev API (`TYPESAFE_API_KEY`)
 
 **Storage**: Prime Agent append-only JSONL session-átiratok; tömörítési esemény-rekordok JSONL/JSON-logban (FR-006)
 
@@ -64,6 +64,7 @@ esemény-rekord (FR-006: stats, döntés-okok, arány) → mérési alap
 4. **Méretbecslési ráhagyás: a becsült state-limit a valódi limit 80%-a** (a spec NEEDS CLARIFICATION-ének eldöntése) — a karakteralapú becslés iránya és nagysága nem ismert előre; a 20% ráhagyás konzervatív, a validáció során mérjük a tényleges becslési hibát, és ha <10%, a ráhagyás csökkenthető. (Alternatíva: valódi tokenizer a bridge-ben — elvetve v1-re, extra függőség; a csomag request-szintű kalibrációja a saját becslésére épül, azt nem „javítjuk ki".)
 5. **Részleges Jev-válasz = teljes hiba → fallback** — nem alkalmazunk félkész döntéshalmazt; az FR-005 fallback-ág olcsóbb, mint egy részlegesen tömörített kontextus hibája. (Alternatíva: részleges döntések alkalmazása konzervatív defaulttal — elvetve, nehezen tesztelhető viselkedés.)
 6. **Az export/adapter (JSONL → Message[] és vissza) Pythonban, a Prime Agent oldalán** — a teljes integrációs munka ~70%-a ez (párosítás, pinned-ablak, fallback-logika, esemény-rekord); opciófüggetlen. (Alternatíva: az export a bridge-ben, TypeScriptben — elvetve, a JSONL-formátum a Python-oldal birtokában van.)
+7. **Git-forrás + commit-hash-pinning npm helyett** — a preflight során kiderült: a csomag nincs publikálva a nyilvános npm-registry-ben (E404), csak a GitHub-repo érhető el. A pinning így commit-hashre történik (`#e3f262a7`), a „verzióváltás = baseline újramérés" szabály változatlanul él (hash-váltás = újramérés). (Alternatíva: **vendorolás** — a `src/` bemásolása a repóba; elvetve, mert az upstream-frissítések onnantól kézzel jönnének, ami KD-1 indokát döntené meg. Újraindítási feltétel: ha a csomag npm-re kerül, visszaállhatunk verzió-pinningre.)
 
 ## Project Structure
 
@@ -83,7 +84,7 @@ compaction/
 ├── adapter.py           # JSONL ↔ Message[] fordítás, párosítás, pinned-ablak, fallback-vezérlés
 ├── bridge/
 │   ├── compact-server.mjs   # stdin/stdout JSON bridge a npm-csomagra
-│   └── package.json         # fast-jev-compaction PINNELT verzióval
+│   └── package.json         # fast-jev-compaction commit-hashre PINNELVE (KD-7)
 ├── events.py            # FR-006 esemény-rekord írása
 └── config.py            # küszöbök, pinned-ablak, ráhagyás (FR-004, FR-007, KD-4)
 
