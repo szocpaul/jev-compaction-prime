@@ -4,7 +4,7 @@
 
 **Created**: 2026-09-18
 
-**Status**: Draft
+**Status**: Closed — superseded (a premissza a T016-os kapunál megingott; a folytatás spec 002)
 
 **Input**: User description: „Hosszú futású agent-sessionökben a meglévő kontextus-tömörítés összefoglalóval dolgozik, és az összefoglalóból elveszhetnek pontos fájlútvonalak, hibaüzenetek és parancsok, amelyek később a munka folytatásához kellenének. Szükségem van olyan tömörítésre, ami semmit nem ír át — csak eldobja, ami már nem kell, és verbatim megtart minden mást —, és hiba vagy elégtelen tömörítés esetén megbízhatóan visszaesik a jelenlegi viselkedésre."
 
