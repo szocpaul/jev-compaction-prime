@@ -34,7 +34,7 @@ során jönnek létre és eleinte buknak — egy launch-time `pytest -q` gate a 
 alatt végig piros lenne. A gate-ek task-szinten élnek a tasks.md-ben (SC-001..003, T012).
 
 **TILALMAK:**
-- A MANUÁLIS KAPU taskokat (T003, T013) NE pipáld — azok emberi döntések; állj meg és jelentsd, amikor odaérsz.
+- A MANUÁLIS KAPU taskokat (T003 ✅, T013, T016) NE pipáld — azok emberi döntések; állj meg és jelentsd, amikor odaérsz.
 - A Prime Agent meglévő összefoglaló-compaction kódjához NE nyúlj (fallback-ként változatlanul marad).
 - A `fast-jev-compaction` pinnelt commit-hashét (`e3f262a7`) a baseline rögzítése (T002) után NE változtasd — hash-váltás = baseline újramérés.
 - A baseline-mérésnél (T002) NE használj cache-t — a mérés tényleg fusson.

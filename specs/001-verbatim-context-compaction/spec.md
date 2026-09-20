@@ -18,7 +18,9 @@ A spec cél-futtatókörnyezete a **Prime Agent** (PrimeIntellect-ai/prime-agent
 
 A probléma tehát nem végleges adatvesztés, hanem **láthatósági veszteség**: az összefoglaló definíció szerint átírás — a modell dönti el, mi maradjon benne, és a kihagyott részletek (pontos fájlútvonal, verbatim hibaüzenet, konkrét parancs) kikerülnek az aktív kontextusból. Visszakeresésük az agent tudatos lépését igényli: ha az agent nem sejti, hogy hiányzik valami, nem is keresi. A veszteség láthatatlan — az összefoglaló „jól hangzik", a hiány csak akkor derül ki, amikor a session egy későbbi lépésben hibás útvonalra vagy téves hibaértelmezésre épít.
 
-A veszteség mértéke jelenleg nincs számszerűsítve — ez a diagnózis gyenge pontja, és a validáció része lesz: rögzített, valós session-átiratokon mérve kell igazolni, hogy a jelenség egyáltalán létezik és mekkora (lásd SC-004).
+A veszteség mértéke a baseline-mérés szerint jelentős: 6 valós áiraton, két summarizer-modellnél (Qwen3.8-27B: 55–65/88 jelölt; Kimi K3: 47–61/88) a később hivatkozott azonosítók ~53–74%-a elvész a summary-ból (lásd SC-004, `baseline_loss.json`).
+
+**Új evidencia (2026-09-19/20)**: a NousResearch/hermes-agent#116246 eval ugyanezt a módszert (fast-jev-compaction Python-port) mérte ki: a verbatim-kar recall-előnye kizárólag a szöveg megtartásából fakad, kiegyenlített büdzsénél a pontozás döntetlen a recency-vel; a verbatim ~2,1× token-terhet jelent turnönként, ciklusonként prompt-cache-t tör, és >~500 tool call nem fér a döntési keretbe; a **summary + egy visszakeresés a megmaradt historyból** recall-ban és költségben is jobb (78,9% @ 55K vs 75,5% @ 115K). Mivel a Prime Agent is megtartja a teljes JSONL-historyt, a spec premisszája (a closed-book veszteség = gyakorlati veszteség) ellenőrzést igényel → **SC-004b kontroll-kar**, az emberi kapu dönt a folytatásról vagy átfogalmazásról.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -86,6 +88,7 @@ Ha az elem-alapú tömörítés elhasal (külső szolgáltatás-hiba, hibás vá
 - **SC-002**: Párosítási invariáns: a kimenetben 0 árva eredmény és 0 árva hívás; gate: `pytest -q tests/test_pairing.py` (exit code 0).
 - **SC-003**: Fallback-teszt: minden szimulált hibaforrásra (elérhetetlen szolgáltatás, hibás válasz, küszöb alatti arány) a meglévő viselkedés lép életbe, és a log tartalmazza az okot; gate: `pytest -q tests/test_fallback.py` (exit code 0).
 - **SC-004**: Diagnózis-mérés: ≥5 rögzített valós session-átiraton az összefoglaló-alapú tömörítés után számszerűen rögzítve, hány később hivatkozott fájlútvonal/hibaüzenet veszett el (baseline, változtatás előtt, fájlba írva); és ugyanezen áiratokon az új tömörítésnél ez a veszteség 0 (a megtartott elemek között minden hivatkozott útvonal/hibaüzenet verbatim jelen van). Gate: compare-script számszerű küszöbbel, per-átirat bontásban.
+- **SC-004b (új evidencia utáni kontroll-kar)**: ugyanazon az ≥5 áiraton mérve kell azt is, hogy a summary után **egyetlen visszakeresés** a megmaradt JSONL-historyból az elveszett jelöltek hány százalékát hozza vissza (az agent valós recovery-útvonalát szimulálva). Ha a closed-book-veszteség ≥90%-a egy kereséssel visszanyerhető, a feature premisszája megingott, és a spec átfogalmazandó (az emberi kapu dönt). Indok: a NousResearch/hermes-agent#116246 eval szerint a verbatim-kar csak closed-book mérésben nyer; summary + egy keresés recall-ja és token-költsége is jobb (78,9% @ 55K vs 75,5% @ 115K), és a verbatim-kar ~2,1× token-terhet jelent turnönként romló cadence-szel.
 - **SC-005**: Tömörítési arány: a baseline-átiratokon az új tömörítés karakterarányos méretcsökkentése ≥ 25% (a fallback-küszöb felett), különben a feature az adott sessionön nem váltja ki a régi viselkedést — ez mérve és naplózva van.
 
 ## Assumptions

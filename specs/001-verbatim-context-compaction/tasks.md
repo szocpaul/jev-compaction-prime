@@ -13,11 +13,20 @@
 - [x] T001 Rögzíts ≥5 valós Prime Agent session-átiratot (JSONL) a `tests/fixtures/transcripts/` alá, változatlan környezetben; minden áirat 80–150 tool call-os legyen.
 - [x] T002 Írj `scripts/baseline_loss.py` scriptet: minden fixture-átiraton lefuttatja a meglévő összefoglaló-compactiont, és számszerűen rögzíti, hány később hivatkozott fájlútvonal/hibaüzenet esett ki — per-átirat bontásban, `baseline_loss.json`-be.
   - Kis mintás zajmérés: a mérést 2–3× ismételd ugyanazon áiratokon; az intervallumokat is rögzítsd.
-- [ ] T003 **MANUÁLIS KAPU**: a felhasználó átnézi a `baseline_loss.json`-t, és jóváhagyja, hogy a diagnózis igazolódott (vagy a lánc megáll, ha a veszteség ≈ 0). Az agent NEM pipálhatja.
+- [ ] T003 **MANUÁLIS KAPU**: a felhasználó átnézi a `baseline_loss.json`-t, és jóváhagyja, hogy a diagnózis igazolódott (vagy a lánc megáll, ha a veszteség ≈ 0). Az agent NEM pipálhatja. ✅ APPROVED 2026-09-20 (Qwen: 55–65/88, Kimi K3: 47–61/88)
+
+## Phase 0b: Kontroll-kar — summary + visszakeresés (SC-004b, új evidencia miatt BLOKKOLJA a Phase 1-et)
+
+- [ ] T015 Írj `scripts/baseline_recovery.py` scriptet: a 6 fixture-átiraton a summary után szimulálja az agent recovery-útvonalát — minden elveszett jelöltre EGYETLEN keresés a megmaradt JSONL-historyban (ugyanaz a lekérdezési felület, amit az agent élőben használ), és rögzíti, hány jelölt nyerhető vissza. Kimenet: `baseline_recovery.json`, per-átirat × per-modell bontásban, cache nélkül.
+  - Előfeltétel: T002 baseline kész; a keresés a JSONL-ben történik (NEM a summary újragenerálásával).
+- [ ] T016 **MANUÁLIS KAPU**: a felhasználó értékeli a `baseline_recovery.json`-t. Döntési szabály (SC-004b): ha a closed-book-veszteség ≥90%-a egy kereséssel visszanyerhető → a spec premisszája megingott, a Phase 1 NEM indul, a spec átfogalmazandó (pl. „azonosító-megtartó summary + recovery-pointer" irány). Ha <90% → a Phase 1 folytatódhat. Az agent NEM pipálhatja.
 
 ---
 
 ## Phase 1: User Story 1 — Verbatim tömörítés (P1)
+
+> **BLOKKOLVA a T016-os MANUÁLIS KAPUIG** — csak akkor indul, ha a kontroll-kar (T015)
+> azt mutatja, hogy a summary+keresés nem oldja meg a problémát (<90% visszanyerés).
 
 **Goal**: JSONL → Message[] fordítás, bridge, verbatim/párosítási invariánsok teljesülnek.
 
