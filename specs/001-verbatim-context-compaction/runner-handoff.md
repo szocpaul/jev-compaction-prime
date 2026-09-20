@@ -38,6 +38,11 @@ alatt végig piros lenne. A gate-ek task-szinten élnek a tasks.md-ben (SC-001..
 - A Prime Agent meglévő összefoglaló-compaction kódjához NE nyúlj (fallback-ként változatlanul marad).
 - A `fast-jev-compaction` pinnelt commit-hashét (`e3f262a7`) a baseline rögzítése (T002) után NE változtasd — hash-váltás = baseline újramérés.
 - A baseline-mérésnél (T002) NE használj cache-t — a mérés tényleg fusson.
+- Modell-fegyelem (a baseline summarizer-modellére):
+  - A compaction/summarizer-modell PINNELVE van a baseline_loss.json meta-blokkjában — NE cseréld.
+  - ÚJ compaction-modell bevezetése = csak az ÚJ modell baseline-mérése a fixture-ökön (a régieket NE mérd újra — a modell-tengelyek függetlenek).
+  - Meglévő modell verzióváltása = annak a modellnek az újramérése.
+  - A baseline_loss.json per-modell × per-átirat bontásban él (lásd SC-004).
 - Részleges Jev-választ NE alkalmazz — részleges válasz = teljes fallback (plan KD-5).
 - Ha a Jev API vagy az npm-csomag elérhetetlen: állj meg és jelentsd — NE improvizálj helyettesítőt.
 
