@@ -1,0 +1,375 @@
+{
+  "meta": {
+    "purpose": "SC-004b control arm: can the agent recover what the summary lost, with ONE search per lost candidate in the retained JSONL history?",
+    "method": "exact substring search of each lost candidate in the parsed visible text of the full fixture JSONL (the live recovery surface: REPL / grep over the session file). One search per candidate; no summary regeneration; no LLM calls.",
+    "interpretation_warning": "UPPER BOUND: the needle is the exact lost string. A live agent must suspect the loss and derive a query from the summary first.",
+    "baseline_source": "baseline_loss.json",
+    "cache": "n/a — local text search only"
+  },
+  "summarizer=qwen3.8-27b": {
+    "transcripts": {
+      "session-01.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 30,
+            "recovered_one_search": 30,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 32,
+            "recovered_one_search": 32,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 32,
+            "recovered_one_search": 32,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": 1.0
+      },
+      "session-02.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 6,
+            "recovered_one_search": 6,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 12,
+            "recovered_one_search": 12,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 10,
+            "recovered_one_search": 10,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": 1.0
+      },
+      "session-03.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 9,
+            "recovered_one_search": 9,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 11,
+            "recovered_one_search": 11,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 9,
+            "recovered_one_search": 9,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": 1.0
+      },
+      "session-04.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 9,
+            "recovered_one_search": 9,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 9,
+            "recovered_one_search": 9,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 9,
+            "recovered_one_search": 9,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": 1.0
+      },
+      "session-05.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 0,
+            "recovered_one_search": 0,
+            "unrecovered": 0,
+            "recovery_rate": null,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 0,
+            "recovered_one_search": 0,
+            "unrecovered": 0,
+            "recovery_rate": null,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 0,
+            "recovered_one_search": 0,
+            "unrecovered": 0,
+            "recovery_rate": null,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": null
+      },
+      "session-06.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 1,
+            "recovered_one_search": 1,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 1,
+            "recovered_one_search": 1,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 1,
+            "recovered_one_search": 1,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": 1.0
+      }
+    },
+    "totals": {
+      "lost_total": 181,
+      "recovered_total": 181,
+      "recovery_rate": 1.0
+    }
+  },
+  "summarizer=kimi-k3": {
+    "transcripts": {
+      "session-01.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 33,
+            "recovered_one_search": 33,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 31,
+            "recovered_one_search": 31,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 31,
+            "recovered_one_search": 31,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": 1.0
+      },
+      "session-02.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 9,
+            "recovered_one_search": 9,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 5,
+            "recovered_one_search": 5,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 9,
+            "recovered_one_search": 9,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": 1.0
+      },
+      "session-03.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 9,
+            "recovered_one_search": 9,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 9,
+            "recovered_one_search": 9,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 4,
+            "recovered_one_search": 4,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": 1.0
+      },
+      "session-04.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 8,
+            "recovered_one_search": 8,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 6,
+            "recovered_one_search": 6,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 6,
+            "recovered_one_search": 6,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": 1.0
+      },
+      "session-05.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 0,
+            "recovered_one_search": 0,
+            "unrecovered": 0,
+            "recovery_rate": null,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 0,
+            "recovered_one_search": 0,
+            "unrecovered": 0,
+            "recovery_rate": null,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 0,
+            "recovered_one_search": 0,
+            "unrecovered": 0,
+            "recovery_rate": null,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": null
+      },
+      "session-06.jsonl": {
+        "runs": [
+          {
+            "run": 0,
+            "lost": 1,
+            "recovered_one_search": 1,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 1,
+            "lost": 1,
+            "recovered_one_search": 1,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          },
+          {
+            "run": 2,
+            "lost": 2,
+            "recovered_one_search": 2,
+            "unrecovered": 0,
+            "recovery_rate": 1.0,
+            "unrecovered_items": []
+          }
+        ],
+        "mean_recovery_rate": 1.0
+      }
+    },
+    "totals": {
+      "lost_total": 164,
+      "recovered_total": 164,
+      "recovery_rate": 1.0
+    }
+  }
+}

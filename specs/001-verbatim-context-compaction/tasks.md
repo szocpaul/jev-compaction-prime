@@ -17,7 +17,7 @@
 
 ## Phase 0b: Kontroll-kar — summary + visszakeresés (SC-004b, új evidencia miatt BLOKKOLJA a Phase 1-et)
 
-- [ ] T015 Írj `scripts/baseline_recovery.py` scriptet: a 6 fixture-átiraton a summary után szimulálja az agent recovery-útvonalát — minden elveszett jelöltre EGYETLEN keresés a megmaradt JSONL-historyban (ugyanaz a lekérdezési felület, amit az agent élőben használ), és rögzíti, hány jelölt nyerhető vissza. Kimenet: `baseline_recovery.json`, per-átirat × per-modell bontásban, cache nélkül.
+- [x] T015 Írj `scripts/baseline_recovery.py` scriptet: a 6 fixture-átiraton a summary után szimulálja az agent recovery-útvonalát — minden elveszett jelöltre EGYETLEN keresés a megmaradt JSONL-historyban (ugyanaz a lekérdezési felület, amit az agent élőben használ), és rögzíti, hány jelölt nyerhető vissza. Kimenet: `baseline_recovery.json`, per-átirat × per-modell bontásban, cache nélkül.
   - Előfeltétel: T002 baseline kész; a keresés a JSONL-ben történik (NEM a summary újragenerálásával).
 - [ ] T016 **MANUÁLIS KAPU**: a felhasználó értékeli a `baseline_recovery.json`-t. Döntési szabály (SC-004b): ha a closed-book-veszteség ≥90%-a egy kereséssel visszanyerhető → a spec premisszája megingott, a Phase 1 NEM indul, a spec átfogalmazandó (pl. „azonosító-megtartó summary + recovery-pointer" irány). Ha <90% → a Phase 1 folytatódhat. Az agent NEM pipálhatja.
 
